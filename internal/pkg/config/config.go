@@ -8,8 +8,9 @@ import (
 
 // Config represents the application configuration structure.
 type App struct {
-	Name string `yaml:"name"`
-	Env  string `yaml:"env"`
+	Name        string `yaml:"name"`
+	Env         string `yaml:"env"`
+	LoggerLevel string `yaml:"logger_level"`
 }
 
 func (a *App) GetName() string {
@@ -18,6 +19,10 @@ func (a *App) GetName() string {
 
 func (a *App) GetEnv() string {
 	return a.Env
+}
+
+func (a *App) GetLoggerLevel() string {
+	return a.LoggerLevel
 }
 
 // Config is the main configuration struct that holds all configuration sections.

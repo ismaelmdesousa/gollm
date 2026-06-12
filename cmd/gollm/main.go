@@ -5,6 +5,7 @@ import (
 
 	"github.com/ismaelmdesousa/gollm/internal/app"
 	"github.com/ismaelmdesousa/gollm/internal/pkg/config"
+	"github.com/ismaelmdesousa/gollm/internal/pkg/logger"
 )
 
 var (
@@ -18,6 +19,11 @@ func main() {
 		panic(err)
 	}
 
-	app := app.New(cfg.GetApp())
-	println(app.Greet())
+	log := logger.NewLogger(cfg.GetApp().GetLoggerLevel())
+
+	log.Info("Configuration loaded successfully")
+
+	log.Info("Start application")
+	app := app.New(cfg.GetApp(), app.WithLogger(log))
+	log.Info(app.Greet())
 }
